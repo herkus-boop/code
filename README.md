@@ -34,15 +34,14 @@ The reference (a Lovable-built preview) was made before pricing/specs were confi
 - Attachment: **2× siurbtukai** (suction cups). Install: **60 sek.**, remove: **30 sek.**
 - Storage: **maišelis**, included in the box. Weight: **450 g**.
 - Test results: no frost formed under the cover; didn't freeze to wet glass; held through **30,1 m/s** wind; scraper **15 min.** vs. Šaltukas **30 sek.**; no ice after freezing rain.
+- Overnight test conditions: **−17 °C, pūga (blizzard), 30,1 m/s** wind.
+- Field-tested over **67** cold nights at Lithuanian test sites.
+- Material: **100% poliesteris su PVC danga**.
 - Returns: 14 days, unopened/unused item in original packaging. Contact: **info@saltukas.lt**.
 
-## Still open — flagged with a yellow pill on the page
+## Still open
 
-Search for `class="pill pill-todo"` to find every field still needing a real value:
-
-- **Field-test night count** (hero proof line) — flagged rather than guessed; an earlier "200 nights" figure would overstate testing versus what a single Lithuanian winter even allows (~32 sub-zero nights per the research doc)
-- **Fabric material** (Tinkamumas → Produkto duomenys) — still needs an answer (e.g. Oxford cloth, aluminized film)
-- **Exact overnight-test weather log** (Įrodymas → "Oro sąlygos") — temperature/precipitation/wind specifics from the actual comparison test, once filmed
+Nothing is currently flagged with `class="pill pill-todo"` — every field the page asks for has a confirmed value. If new specs or test data come in later, search for that class to find where placeholders used to live, or just search the page for any remaining `pill-todo` you reintroduce.
 
 ## Cart / checkout
 
