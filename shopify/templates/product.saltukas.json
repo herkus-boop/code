@@ -1,0 +1,9 @@
+{
+  "layout": "saltukas",
+  "sections": {
+    "main": {
+      "type": "saltukas-product"
+    }
+  },
+  "order": ["main"]
+}

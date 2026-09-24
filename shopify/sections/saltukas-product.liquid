@@ -1,0 +1,411 @@
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo">❋ ŠALTUKAS</a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#kaip-veikia">Kaip veikia</a>
+      <a href="#irodymas">Testas</a>
+      <a href="#tinkamumas">Tinkamumas</a>
+      <a href="#duk">DUK</a>
+    </nav>
+    <div class="header-actions">
+      <a href="{{ routes.cart_url }}" class="cart-btn" aria-label="Krepšelis">
+        🛒 <span id="cartCount" class="cart-count">{{ cart.item_count }}</span>
+      </a>
+      <a href="#produktas" class="btn btn-primary btn-small">Užsisakyti</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Meniu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO / PRODUCT ============ -->
+  <section class="section product-hero" id="produktas">
+    <div class="container product-grid">
+      <div class="product-gallery">
+        <div class="gallery-main" id="galleryMain">
+          <img src="{{ 'saltukas-installed-clean.jpg' | asset_url }}" alt="Šaltukas uždėtas ant priekinio stiklo" id="galleryMainImg">
+        </div>
+        <div class="gallery-thumbs">
+          <div class="thumb active" data-img="{{ 'saltukas-installed-clean.jpg' | asset_url }}" data-alt="Šaltukas uždėtas ant priekinio stiklo">
+            <img src="{{ 'saltukas-installed-clean.jpg' | asset_url }}" alt="">
+          </div>
+          <div class="thumb" data-img="{{ 'saltukas-installed-no-scraper.jpg' | asset_url }}" data-alt="Šaltukas uždėtas, sniegas aplinkui, grandiklio nereikia">
+            <img src="{{ 'saltukas-installed-no-scraper.jpg' | asset_url }}" alt="">
+          </div>
+          <div class="thumb" data-img="{{ 'saltukas-product-flat.jpg' | asset_url }}" data-alt="Šaltukas ir 2 siurbtukai">
+            <img src="{{ 'saltukas-product-flat.jpg' | asset_url }}" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <p class="eyebrow">Priekinio stiklo uždangalas</p>
+        <h1>Uždenk vakare.<br><span class="accent-line">Ryte – mažiau gramdymo.</span></h1>
+        <p class="hero-sub">Šaltukas – tai priekinio stiklo uždangalas automobiliui, kuris nakvoja lauke. Sniegas nusėda ant uždangalo, o ne ant tavo stiklo.</p>
+
+        <ul class="check-list">
+          <li><span class="check-dot">✓</span> Uždedi per <strong>60 sek.</strong> vakare, nuimi per <strong>30 sek.</strong> ryte</li>
+          <li><span class="check-dot">✓</span> Mažiau laiko šaltyje su grandikliu rankoje</li>
+          <li><span class="check-dot">✓</span> Matmenys – <strong>200 × 170 cm</strong> (tinkamumo gidas žemiau)</li>
+        </ul>
+
+        <div class="price-block">
+          <p class="price-label">Kaina</p>
+          <div class="price-row">
+            <span class="price" id="unitPrice">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="price-old">{{ product.compare_at_price | money }}</span>
+              {% assign save_amount = product.compare_at_price | minus: product.price %}
+              <span class="price-save">Sutaupai {{ save_amount | money }}</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <form id="saltukasForm" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <div class="buy-box">
+            <div class="qty-selector">
+              <button type="button" id="qtyMinus" aria-label="Mažinti kiekį">−</button>
+              <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="10" aria-label="Kiekis">
+              <button type="button" id="qtyPlus" aria-label="Didinti kiekį">+</button>
+            </div>
+            {% if product.available %}
+              <button type="submit" class="btn btn-primary btn-large">Noriu Šaltuko</button>
+            {% else %}
+              <button type="submit" class="btn btn-primary btn-large" disabled>Išparduota</button>
+            {% endif %}
+          </div>
+          <p class="cart-added-note" id="cartAddedNote">Pridėta į krepšelį ✓</p>
+          <p class="form-error" id="cartErrorNote"></p>
+        </form>
+
+        <p class="trust-line">🛡️ 14 dienų grąžinimas</p>
+        <p class="proof-line">Testuota Lietuvos aikštelėse per <strong>67</strong> šaltas naktis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEMA + TIKROJI PRIEŽASTIS (dark, merged) ============ -->
+  <section class="dark-split" id="problema">
+    <div class="container dark-split-inner">
+      <div class="dark-col">
+        <p class="eyebrow eyebrow-light">Tas pats rytas. Vėl ir vėl.</p>
+        <h2 class="light-heading">Išeini iš namų. Stiklas vėl baltas.</h2>
+        <p class="light-body">Užvedi variklį, išsitrauki grandiklį ir stovi šaltyje. Pirštai šąla, ledas lūžinėja mažais gabaliukais, o laikas bėga.</p>
+        <p class="light-emphasis">Rytoj bus tas pats. Poryt irgi. Ir taip iki kovo.</p>
+      </div>
+      <div class="dark-col dark-col-bordered">
+        <p class="eyebrow eyebrow-light">Tikroji priežastis</p>
+        <h2 class="light-heading">Problema prasideda ne ryte</h2>
+        <p class="light-body">Ji prasideda vakare, kai palieki automobilį su neuždengtu stiklu. Grandiklis, purškalas ir šildymas veikia, bet tik tada, kai ledas jau yra ant stiklo.</p>
+        <hr class="dark-divider">
+        <p class="light-emphasis">Šaltukas uždengia stiklą dar prieš sniegui ant jo nusėdant.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KAIP TAI VEIKIA ============ -->
+  <section class="section" id="kaip-veikia">
+    <div class="container">
+      <p class="eyebrow">Kaip tai veikia</p>
+      <h2>3 žingsniai. Jokių įrankių.</h2>
+      <hr class="section-divider">
+      <ol class="steps-row">
+        <li>
+          <span class="step-num">01</span>
+          <h3>Uždėk vakare</h3>
+          <p>Pastatęs automobilį išskleidi Šaltuką ant priekinio stiklo ir pritvirtini su <strong>2× siurbtukais</strong>. Užtrunka apie <strong>60 sek.</strong></p>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <h3>Palik per naktį</h3>
+          <p>Sniegas ir šerkšnas kaupiasi ant uždangalo, o ne tiesiai ant stiklo.</p>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <h3>Nuimk ryte</h3>
+          <p>Nuimi, nupurtai sniegą, susuki ir įdedi į <strong>maišelį</strong>. Prieš važiuodamas visada apžiūrėk visus langus ir žibintus.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ ĮRODYMAS ============ -->
+  <section class="section section-alt" id="irodymas">
+    <div class="container proof-split">
+      <div class="proof-visual">
+        <div class="video-placeholder" style="background-image: url('{{ 'saltukas-installed-no-scraper.jpg' | asset_url }}');">
+          <span class="play-btn">▶</span>
+          <p class="video-caption">Nekarpytas vakaro ir ryto testas</p>
+        </div>
+      </div>
+      <div class="proof-copy">
+        <p class="eyebrow">Įrodymas</p>
+        <h2>Nepatikėk mūsų žodžių. Pažiūrėk.</h2>
+        <p class="lede">Du automobiliai, ta pati aikštelė, ta pati naktis. Vienas su Šaltuku, kitas be jo. Parodysime visą uždėjimą, ryto palyginimą, nuėmimą ir susukimą.</p>
+        <ul class="proof-rows">
+          <li>
+            <div>
+              <h4>Oro sąlygos</h4>
+              <p>Temperatūra, krituliai ir vėjas</p>
+            </div>
+            <span class="pill pill-done">−17 °C, pūga, 30,1 m/s</span>
+          </li>
+          <li>
+            <div>
+              <h4>Be uždangalo</h4>
+              <p>Visas valymo laikas</p>
+            </div>
+            <span class="pill pill-done">15 min.</span>
+          </li>
+          <li>
+            <div>
+              <h4>Su Šaltuku</h4>
+              <p>Nuėmimas ir susukimas įskaičiuoti, ledo nebuvo</p>
+            </div>
+            <span class="pill pill-done">30 sek.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PALYGINIMAS ============ -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Palyginimas</p>
+      <h2>Du būdai pradėti žiemos rytą</h2>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Su grandikliu</th>
+            <th class="accent-col">Su Šaltuku</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kada dirbi</td>
+            <td>Ryte, kai skubi</td>
+            <td class="accent-col">Vakare, kai niekur neskubi</td>
+          </tr>
+          <tr>
+            <td>Ką darai</td>
+            <td>Gramdai, šluoji, lauki, kol atšils</td>
+            <td class="accent-col">Nuimi, nupurtai, susuki</td>
+          </tr>
+          <tr>
+            <td>Laikas šaltyje</td>
+            <td>15 min.</td>
+            <td class="accent-col">30 sek.</td>
+          </tr>
+          <tr>
+            <td>Po lijundros</td>
+            <td>Kietas ledo sluoksnis</td>
+            <td class="accent-col">Ledo nebuvo</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="fine-print">Grandiklio neišmesk. Jo vis tiek prireiks šoniniams langams, galiniam stiklui ir stogui. Šaltukas tiesiog paima didžiausią darbą, t. y. priekinį stiklą.</p>
+    </div>
+  </section>
+
+  <!-- ============ TINKAMUMAS ============ -->
+  <section class="dark-section" id="tinkamumas">
+    <div class="container">
+      <div class="fit-top">
+        <div class="fit-copy">
+          <p class="eyebrow eyebrow-light">Tinkamumas</p>
+          <h2 class="light-heading">Ar tiks mano automobiliui?</h2>
+          <p class="light-body">Matmenys – <strong>200 × 170 cm</strong>, uždengia priekinį stiklą iki <strong>200 cm</strong> pločio ir <strong>70 cm</strong> aukščio. Nesakysime, kad tinka visiems automobiliams, kol nebaigsime pilno matavimų testo.</p>
+          <hr class="dark-divider">
+          <div class="icon-row">
+            <span class="icon-badge">📏</span>
+            <div>
+              <h4 class="light-heading-sm">Patikrink per minutę</h4>
+              <p class="light-body">Ruletėle išmatuok priekinį stiklą per plačiausią vietą ir per aukštį. Tikslų išbandytų automobilių sąrašą paskelbsime po bandymų.</p>
+            </div>
+          </div>
+        </div>
+        <div class="fit-photo">
+          <img src="{{ 'saltukas-product-flat.jpg' | asset_url }}" alt="Šaltukas ant skirtingų automobilių — nuotrauka bus atnaujinta po testų su daugiau modelių">
+          <p class="fit-photo-caption">Daugiau automobilių tipų — netrukus</p>
+        </div>
+      </div>
+
+      <div class="fit-cards">
+        <div class="fit-info-card">
+          <span class="icon-badge">📦</span>
+          <h4 class="light-heading-sm">Ką gauni</h4>
+          <ul class="dark-list">
+            <li>1 × Šaltukas uždangalas</li>
+            <li>2 × siurbtukai</li>
+            <li>1 × laikymo maišelis</li>
+          </ul>
+        </div>
+        <div class="fit-info-card">
+          <span class="icon-badge">🕓</span>
+          <h4 class="light-heading-sm">Produkto duomenys</h4>
+          <ul class="dark-list">
+            <li>Medžiaga: 100% poliesteris su PVC danga</li>
+            <li>Matmenys: 200 × 170 cm</li>
+            <li>Svoris: 450 g</li>
+            <li>Priežiūra: išdžiovink kambario temperatūroje</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SĄŽININGAI ============ -->
+  <section class="section">
+    <div class="container narrow">
+      <p class="eyebrow center">Sąžiningai</p>
+      <h2 class="center">Kam skirtas Šaltukas</h2>
+      <div class="honesty-split">
+        <div class="honesty-col">
+          <h4>Skirtas</h4>
+          <ul>
+            <li><span class="ok-mark">✓</span> Vairuotojams, kurių automobilis nakvoja lauke</li>
+            <li><span class="ok-mark">✓</span> Norintiems mažiau grandymo šaltą rytą</li>
+            <li><span class="ok-mark">✓</span> Pasiruošusiems kas vakarą uždėti, o ryte nuimti uždangalą</li>
+          </ul>
+        </div>
+        <div class="honesty-col">
+          <h4>Neskirtas</h4>
+          <ul>
+            <li><span class="no-mark">✗</span> Automobiliams, laikomiems garaže ar po stogu</li>
+            <li><span class="no-mark">✗</span> Ieškantiems sprendimo, kuriam nereikia jokio veiksmo</li>
+            <li><span class="no-mark">✗</span> Norintiems apsaugos šoniniams langams, stogui ar žibintams</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fine-print center">Galutinius teiginius patvirtinsime tik po bandymų su parduodamu produktu.</p>
+    </div>
+  </section>
+
+  <!-- ============ ATSILIEPIMAI ============ -->
+  <section class="section section-alt">
+    <div class="container narrow center">
+      <p class="eyebrow">Atsiliepimai</p>
+      <h2>Renkame pirmuosius atsiliepimus</h2>
+      <div class="reviews-placeholder">
+        <p>Šioje vietoje bus tik tikri pirkėjų atsiliepimai su nuotraukomis, surinkti po pirmųjų pristatymų. Nerodysime sugalvotų įvertinimų ar žvaigždučių, kol jų neturėsime iš tikrųjų.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PASIŪLYMAS (solid red band) ============ -->
+  <section class="offer-band">
+    <div class="container offer-inner">
+      <div class="offer-copy">
+        <p class="eyebrow eyebrow-on-red">Pasiruošk dar prieš pirmąsias šalnas</p>
+        <h2 class="on-red-heading">Geriau turėti bagažinėje, nei dar kartą stovėti prie apledėjusio stiklo.</h2>
+        <p class="on-red-body">
+          Šaltukas atkeliaus per <strong>5 darbo dienas</strong> kurjeriu. Kaina — <strong>{{ product.price | money }}</strong>
+          {% if product.compare_at_price > product.price %}(anksčiau {{ product.compare_at_price | money }}){% endif %}.
+          Taikomas 14 dienų grąžinimas.
+        </p>
+      </div>
+      <a href="#produktas" class="btn btn-light">Noriu Šaltuko →</a>
+    </div>
+  </section>
+
+  <!-- ============ DUK ============ -->
+  <section class="section" id="duk">
+    <div class="container duk-split">
+      <div class="duk-intro">
+        <p class="eyebrow">DUK</p>
+        <h2>Prieš nusprendžiant</h2>
+        <p class="lede">Čia atsakome tiesiai — o kur dar trūksta bandymų, taip ir sakome.</p>
+      </div>
+      <div class="duk-list">
+        <details class="faq-row" open>
+          <summary>Ar po uždangalu vis tiek susidarys šerkšnas?<span class="faq-toggle">−</span></summary>
+          <p>Šaltukas užstoja stiklą nuo sniego ir tiesioginio šerkšno. Mūsų testuose po uždangalu šerkšnas nesusidarė. Esant labai drėgnam orui plonas sluoksnis gali susidaryti ir po juo — tada jį nuvalysi daug greičiau nei storą ledo sluoksnį.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Ar uždangalas neprišals prie stiklo?<span class="faq-toggle">+</span></summary>
+          <p>Ne — mūsų testuose uždangalas prie šlapio stiklo neprišalo.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Ar vėjas jo nenupūs?<span class="faq-toggle">+</span></summary>
+          <p>2 siurbtukai laiko uždangalą vietoje. Išbandėme esant 30,1 m/s vėjui: uždangalo vėjas nenupūtė.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Ar tiks mano automobiliui?<span class="faq-toggle">+</span></summary>
+          <p>Pažiūrėk matavimo gidą aukščiau arba parašyk mums automobilio modelį.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Kur dėti šlapią uždangalą ryte?<span class="faq-toggle">+</span></summary>
+          <p>Susuk jį ir įdėk į <strong>maišelį</strong>. Namuose išdžiovink kambario temperatūroje.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Ar nesubraižys stiklo ar dažų?<span class="faq-toggle">+</span></summary>
+          <p>Ne, nes tvirtinimui naudojami siurbtukai, o ne kabliai ar magnetai, kurie galėtų subraižyti dažus ar stiklą.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Ar man vis tiek reikės grandiklio?<span class="faq-toggle">+</span></summary>
+          <p>Taip. Šoniniams langams, galiniam stiklui, stogui ir žibintams. Šaltukas nuima darbą nuo priekinio stiklo, bet ne nuo viso automobilio.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Kiek laiko užtrunka uždėti?<span class="faq-toggle">+</span></summary>
+          <p>Apie 60 sek. uždėti ir 30 sek. nuimti. Visą procesą gali pamatyti video aukščiau.</p>
+        </details>
+        <details class="faq-row">
+          <summary>Kaip greitai atkeliaus?<span class="faq-toggle">+</span></summary>
+          <p>Per 5 darbo dienas į bet kurį Lietuvos miestą, pristato <strong>kurjeris</strong>.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PABAIGA ============ -->
+  <section class="final-band">
+    <div class="container final-inner">
+      <span class="final-mark">❄</span>
+      <h2>Šįvakar uždenk. Rytoj pamatysi skirtumą.</h2>
+      <a href="#produktas" class="btn btn-primary btn-large btn-arrow">Noriu Šaltuko ↓</a>
+      <p class="final-trust">14 dienų grąžinimas · pristatymas visoje Lietuvoje</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="#top" class="logo logo-footer">❋ ŠALTUKAS</a>
+      <p class="footer-desc">Priekinio stiklo uždangalas žiemai lauke paliekamiems automobiliams. Sąžininga informacija, be perdėtų pažadų.</p>
+    </div>
+    <div>
+      <h4>Informacija</h4>
+      <ul>
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#kaip-veikia">Kaip veikia</a></li>
+        <li><a href="#tinkamumas">Tinkamumas</a></li>
+        <li><a href="#duk">DUK</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontaktai</h4>
+      <ul>
+        <li>El. paštas: info@saltukas.lt</li>
+        <li>Pristatymas: visoje Lietuvoje</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year"></span> Šaltukas. Visos teisės saugomos.</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Šaltukas produkto puslapis",
+  "settings": []
+}
+{% endschema %}
