@@ -48,7 +48,6 @@
   var qtyMinus = document.getElementById("qtyMinus");
   var qtyPlus = document.getElementById("qtyPlus");
   var addToCartBtn = document.getElementById("addToCart");
-  var bundleRadios = document.querySelectorAll('input[name="bundle"]');
 
   var checkoutOverlay = document.getElementById("checkoutOverlay");
   var closeCheckoutBtn = document.getElementById("closeCheckout");
@@ -127,15 +126,6 @@
     qtyInput.value = v;
   });
 
-  // ===== Bundle selector syncs quantity =====
-  bundleRadios.forEach(function (radio) {
-    radio.addEventListener("change", function () {
-      var option = radio.closest(".bundle-option");
-      var qty = parseInt(option.getAttribute("data-qty"), 10) || 1;
-      qtyInput.value = qty;
-    });
-  });
-
   addToCartBtn.addEventListener("click", function () {
     var add = parseInt(qtyInput.value, 10) || 1;
     cart.qty = Math.min(10, (cart.qty || 0) + add);
@@ -185,35 +175,6 @@
         galleryMainImg.alt = t.getAttribute("data-alt") || "";
       }
     });
-  });
-
-  // ===== Tabs (Ką gauni section) =====
-  var tabBtns = document.querySelectorAll(".tab-btn");
-  var tabPanels = document.querySelectorAll(".tab-panel");
-  tabBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      tabBtns.forEach(function (b) { b.classList.remove("active"); });
-      tabPanels.forEach(function (p) { p.classList.remove("active"); });
-      btn.classList.add("active");
-      document.getElementById("tab-" + btn.getAttribute("data-tab")).classList.add("active");
-    });
-  });
-
-  // ===== Fit illustration shapes (vehicle silhouettes) =====
-  var SHAPES = {
-    hatchback: "M8 62 Q10 40 30 38 L70 38 Q90 40 95 62 L95 74 Q95 80 88 80 L80 80 Q78 70 68 70 Q58 70 56 80 L38 80 Q36 70 26 70 Q16 70 14 80 L8 80 Q2 80 2 74 Z",
-    sedan: "M4 62 Q6 38 26 36 L46 20 L78 20 L92 36 Q112 38 114 62 L114 76 Q114 82 106 82 L98 82 Q96 72 86 72 Q76 72 74 82 L44 82 Q42 72 32 72 Q22 72 20 82 L10 82 Q4 82 4 76 Z",
-    crossover: "M4 58 Q6 32 28 30 L44 14 L84 14 L100 30 Q122 32 124 58 L124 78 Q124 84 116 84 L106 84 Q104 74 94 74 Q84 74 82 84 L46 84 Q44 74 34 74 Q24 74 22 84 L12 84 Q4 84 4 78 Z",
-    suv: "M2 54 Q4 26 28 24 L42 8 L92 8 L110 24 Q136 26 138 54 L138 80 Q138 86 130 86 L118 86 Q116 76 106 76 Q96 76 94 86 L46 86 Q44 76 34 76 Q24 76 22 86 L10 86 Q2 86 2 80 Z",
-    van: "M2 46 L2 78 Q2 84 10 84 L18 84 Q20 74 30 74 Q40 74 42 84 L98 84 Q100 74 110 74 Q120 74 122 84 L130 84 Q138 84 138 78 L138 30 Q138 22 128 22 L46 22 Q30 22 20 32 Z",
-  };
-  document.querySelectorAll(".fit-illustration").forEach(function (el) {
-    var shape = SHAPES[el.getAttribute("data-shape")];
-    if (!shape) return;
-    el.innerHTML =
-      '<svg viewBox="0 0 140 90" style="position:absolute;inset:0;width:100%;height:100%;">' +
-        '<path d="' + shape + '" fill="#3E7CB1" opacity="0.85"/>' +
-      '</svg>';
   });
 
   // ===== Checkout modal =====
