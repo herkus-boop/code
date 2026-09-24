@@ -25,22 +25,25 @@ python3 -m http.server 8000
 
 ## Confirmed product facts
 
-- Price: **€29,99**, down from €39,99 — set in `index.html` (hero, bundle options, offer section, final CTA) and `assets/js/cart.js` (`PRODUCT.price`). The 2-pack bundle is a straight ×2 (€59,98); no extra bundle discount was specified, so none was invented.
-- Delivery: **5 darbo dienas** — set in the top bar, trust row, shipping tab, offer section and FAQ.
-- Dimensions: **200 × 170 cm** — set in the hero, fit-guide and specs table.
-- Attachment: **2× siurbtukai** (2 suction cups) — set in the "Kaip veikia" steps, "Ką gauni" box contents, and the wind-retention FAQ answer.
+- Price: **€29,99**, down from €39,99 — hero, bundle options, offer section, final CTA, `assets/js/cart.js` (`PRODUCT.price`). 2-pack is a straight ×2 (€59,98).
+- Delivery: **5 darbo dienas**, by **kurjeris** — top bar, trust row, shipping tab, offer section, FAQ.
+- Dimensions: **200 × 170 cm** overall — hero, fit-guide, specs table.
+- Fit threshold: cover covers glass up to **200 cm wide × 70 cm tall** — fit-guide.
+- Attachment: **2× siurbtukai** (suction cups) — "Kaip veikia" steps, "Ką gauni" box contents, wind FAQ, scratch/paint FAQ.
+- Install/removal time: **60 sek. to install, 30 sek. to remove** — hero checklist, "Kaip veikia" step 1, DUK.
+- Storage: goes in a **maišelis** (bag), one **included in the box**.
+- Weight: **450 g**.
+- Test results: no frost formed under the cover; didn't freeze to wet glass; held through 30,1 m/s wind; scraper 15 min vs. Šaltukas 30 sek; no ice after freezing rain.
+- Returns: 14 days, **unopened/unused item in original packaging**.
+- Contact: **info@saltukas.lt** (confirmed real).
+- Custom fit questions answered within **24 val.**
 
-## Remaining placeholders — `[X]` fields
+## Still open
 
-The copy brief marks every other unconfirmed fact (install/removal time, wind test results, delivery courier, fit thresholds by vehicle, etc.) with bracketed placeholders like `[X]`. Those stay **visibly flagged** on the live page (yellow highlight, same convention as the source document) rather than filled with invented numbers — the brief is explicit that these come from actual product testing and supplier confirmation, not from copywriting.
-
-Search the page for `mark class="todo"` (or just look for the yellow-highlighted text) to find every field that still needs a real value before launch:
-
-- **Install/removal time** (seconds to put on/take off) and **wind test results** — pending the physical validation tests described in the research
-- **Fit thresholds** (max glass width/height the 200×170 cm cover will still cover) — the overall cover size is now set, but which vehicles it actually fits still needs the size-matrix test
-- **Delivery courier/method, storage bag inclusion, exact return terms**
-- **Video proof asset** — the "Įrodymas" section has a placeholder video block; swap in the real overnight-comparison footage once filmed
-- **Reviews** — intentionally left empty ("Renkame pirmuosius atsiliepimus") rather than showing fabricated testimonials or star ratings; the source research explicitly found too few authentic first-person reviews to use
+- **Field-test count** ("Išbandyta per [X] šaltų naktų") — you gave "200," which would mean over 200 individual sub-zero nights of testing; a single Lithuanian winter has only ~32 per the research doc, so as stated this reads as an inflated claim on a page built around not overclaiming. Left as `[X]` pending a number that reflects what was actually tested (e.g. nights × test units, or a smaller real count).
+- **Fabric material** ("Medžiaga: [patvirtinti]", specs table) — still needs an answer (e.g. Oxford cloth, aluminized film, etc.); "2× siurbtukai" answered attachment hardware, not fabric.
+- **Video proof asset** — the "Įrodymas" section has a placeholder poster image; swap in the real overnight-comparison footage once filmed.
+- **Reviews** — intentionally left empty ("Renkame pirmuosius atsiliepimus") rather than showing fabricated testimonials or star ratings.
 
 ## Cart / checkout
 
