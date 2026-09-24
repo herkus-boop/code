@@ -76,7 +76,7 @@
       var row = document.createElement("div");
       row.className = "cart-item";
       row.innerHTML =
-        '<div class="cart-item-thumb"></div>' +
+        '<img class="cart-item-thumb" src="assets/img/product-flat-suction-cups.jpg" alt="">' +
         '<div class="cart-item-info">' +
           '<h4>' + PRODUCT.name + '</h4>' +
           '<div class="cart-item-qty">' +
@@ -168,43 +168,24 @@
     mainNav.style.right = "0";
     mainNav.style.background = "#ffffff";
     mainNav.style.padding = "16px 24px";
-    mainNav.style.borderBottom = "1px solid #e7e1d6";
+    mainNav.style.borderBottom = "1px solid #D8E3EC";
     mainNav.style.zIndex = "50";
   });
 
-  // ===== Gallery thumbnails =====
+  // ===== Gallery thumbnails (real product photos) =====
   var thumbs = document.querySelectorAll(".gallery-thumbs .thumb");
-  var galleryMain = document.getElementById("galleryMain");
-  var GALLERY_VIEWS = {
-    cover: { label: "Uždėtas Šaltukas", from: "#c23b2f", to: "#8a1f18" },
-    evening: { label: "Uždėjimas vakare", from: "#2c3e5c", to: "#141a2b" },
-    morning: { label: "Rytas su Šaltuku", from: "#3a5a8a", to: "#182a44" },
-    fold: { label: "Sulankstytas ir sudėtas", from: "#6b6258", to: "#332e29" },
-  };
-
-  function renderGallery(viewKey) {
-    var v = GALLERY_VIEWS[viewKey] || GALLERY_VIEWS.cover;
-    galleryMain.innerHTML =
-      '<svg viewBox="0 0 480 420" class="hero-svg">' +
-        '<defs><linearGradient id="hgrad" x1="0" y1="0" x2="1" y2="1">' +
-          '<stop offset="0%" stop-color="' + v.from + '"/>' +
-          '<stop offset="100%" stop-color="' + v.to + '"/>' +
-        '</linearGradient></defs>' +
-        '<rect width="480" height="420" fill="#f7f4ef"/>' +
-        '<rect x="90" y="90" width="300" height="220" rx="16" fill="url(#hgrad)"/>' +
-        '<text x="240" y="210" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="Manrope, sans-serif">' + v.label + '</text>' +
-        '<text x="240" y="380" text-anchor="middle" fill="#9a8f80" font-size="13" font-family="Manrope, sans-serif">Iliustracija — ne faktinė nuotrauka</text>' +
-      '</svg>';
-  }
+  var galleryMainImg = document.getElementById("galleryMainImg");
 
   thumbs.forEach(function (t) {
     t.addEventListener("click", function () {
       thumbs.forEach(function (o) { o.classList.remove("active"); });
       t.classList.add("active");
-      renderGallery(t.getAttribute("data-view"));
+      if (galleryMainImg) {
+        galleryMainImg.src = t.getAttribute("data-img");
+        galleryMainImg.alt = t.getAttribute("data-alt") || "";
+      }
     });
   });
-  renderGallery("cover");
 
   // ===== Tabs (Ką gauni section) =====
   var tabBtns = document.querySelectorAll(".tab-btn");
@@ -231,7 +212,7 @@
     if (!shape) return;
     el.innerHTML =
       '<svg viewBox="0 0 140 90" style="position:absolute;inset:0;width:100%;height:100%;">' +
-        '<path d="' + shape + '" fill="#c23b2f" opacity="0.85"/>' +
+        '<path d="' + shape + '" fill="#3E7CB1" opacity="0.85"/>' +
       '</svg>';
   });
 

@@ -6,7 +6,7 @@
 <title>Šaltukas — priekinio stiklo uždangalas žiemai</title>
 <meta name="description" content="Šaltukas: uždenk priekinį stiklą vakare, ryte turėk mažiau darbo su grandikliu. Pristatymas visoje Lietuvoje.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700;800&family=Nunito+Sans:wght@400;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -47,19 +47,24 @@
     <div class="container product-grid">
       <div class="product-gallery">
         <div class="gallery-thumbs">
-          <div class="thumb active" data-view="cover"></div>
-          <div class="thumb" data-view="evening"></div>
-          <div class="thumb" data-view="morning"></div>
-          <div class="thumb" data-view="fold"></div>
+          <div class="thumb active" data-img="assets/img/installed-clean.jpg" data-alt="Šaltukas uždėtas ant priekinio stiklo">
+            <img src="assets/img/installed-clean.jpg" alt="">
+          </div>
+          <div class="thumb" data-img="assets/img/installed-no-scraper.jpg" data-alt="Šaltukas uždėtas, sniegas aplinkui, grandiklio nereikia">
+            <img src="assets/img/installed-no-scraper.jpg" alt="">
+          </div>
+          <div class="thumb" data-img="assets/img/product-flat-suction-cups.jpg" data-alt="Šaltukas ir 2 siurbtukai">
+            <img src="assets/img/product-flat-suction-cups.jpg" alt="">
+          </div>
         </div>
         <div class="gallery-main" id="galleryMain">
-          <!-- illustrative SVG, swapped by thumbnail clicks -->
+          <img src="assets/img/installed-clean.jpg" alt="Šaltukas uždėtas ant priekinio stiklo" id="galleryMainImg">
         </div>
       </div>
 
       <div class="product-info">
-        <p class="proof-line">Išbandyta per <mark class="todo">[X]</mark> šaltų naktų Lietuvos aikštelėse</p>
-        <h1>Uždenk vakare. Ryte – mažiau gramdymo.</h1>
+        <p class="eyebrow">Pirmasis žiemos rytas gali būti kitoks</p>
+        <h1>Uždenk vakare.<br><span class="accent-line">Ryte – mažiau gramdymo.</span></h1>
         <p class="hero-sub">Šaltukas – tai priekinio stiklo uždangalas automobiliui, kuris nakvoja lauke. Sniegas nusėda ant uždangalo, o ne ant tavo stiklo.</p>
 
         <ul class="check-list">
@@ -82,20 +87,21 @@
           </div>
           <button class="btn btn-primary btn-large" id="addToCart">Noriu Šaltuko</button>
         </div>
+        <p class="proof-line">Išbandyta per <mark class="todo">[X]</mark> šaltų naktų Lietuvos aikštelėse</p>
 
         <!-- Bundle & Save -->
         <div class="bundle-block">
           <p class="bundle-heading">Rinkinys ir taupymas</p>
           <label class="bundle-option" data-bundle="1" data-qty="1">
             <input type="radio" name="bundle" value="1" checked>
-            <span class="bundle-thumb"></span>
+            <img class="bundle-thumb" src="assets/img/product-flat-suction-cups.jpg" alt="">
             <span class="bundle-name">1 vnt. Šaltukas</span>
             <span class="bundle-price">€29,99</span>
           </label>
           <label class="bundle-option featured" data-bundle="2" data-qty="2">
             <span class="bundle-badge">Populiariausias</span>
             <input type="radio" name="bundle" value="2">
-            <span class="bundle-thumb"></span>
+            <img class="bundle-thumb" src="assets/img/product-flat-suction-cups.jpg" alt="">
             <span class="bundle-name">2 vnt. Šaltukas <em>— antram šeimos automobiliui</em></span>
             <span class="bundle-price">€59,98</span>
           </label>
@@ -134,12 +140,17 @@
 
   <!-- ============ PROBLEMA ============ -->
   <section class="section" id="problema">
-    <div class="container narrow">
-      <p class="eyebrow">Problema</p>
-      <h2>Tas pats rytas. Vėl ir vėl.</h2>
-      <p class="lede">Išeini iš namų, jau truputį vėluoji. Prieini prie mašinos ir matai, kad priekinis stiklas vėl baltas.</p>
-      <p>Užvedi variklį, išsitrauki grandiklį ir stovi šaltyje. Pirštai šąla, ledas lūžinėja mažais gabaliukais, o laikas bėga.</p>
-      <p class="emphasis">Rytoj bus tas pats. Poryt irgi. Ir taip iki kovo.</p>
+    <div class="container problem-split">
+      <div class="problem-photo">
+        <img src="assets/img/problem-scraping.jpg" alt="Rankinis priekinio stiklo grandymas šaltą rytą">
+      </div>
+      <div class="problem-copy">
+        <p class="eyebrow">Problema</p>
+        <h2>Tas pats rytas. Vėl ir vėl.</h2>
+        <p class="lede">Išeini iš namų, jau truputį vėluoji. Prieini prie mašinos ir matai, kad priekinis stiklas vėl baltas.</p>
+        <p>Užvedi variklį, išsitrauki grandiklį ir stovi šaltyje. Pirštai šąla, ledas lūžinėja mažais gabaliukais, o laikas bėga.</p>
+        <p class="emphasis">Rytoj bus tas pats. Poryt irgi. Ir taip iki kovo.</p>
+      </div>
     </div>
   </section>
 
@@ -147,7 +158,7 @@
   <section class="section section-alt" id="kaip-veikia">
     <div class="container video-split">
       <div class="video-col">
-        <div class="video-placeholder">
+        <div class="video-placeholder" style="background-image: url('assets/img/installed-no-scraper.jpg');">
           <span class="play-btn">▶</span>
           <p class="video-caption">VIDEO: nekarpytas vakaro uždėjimas → ryto palyginimas → nuėmimas ir susukimas</p>
         </div>
@@ -271,19 +282,7 @@
   <section class="section" id="ka-gauni">
     <div class="container product-grid">
       <div class="gallery-main static-view">
-        <svg viewBox="0 0 400 320" class="product-svg">
-          <rect width="400" height="320" rx="16" fill="#f4efe8"/>
-          <rect x="70" y="60" width="260" height="180" rx="14" fill="url(#boxGrad)"/>
-          <defs>
-            <linearGradient id="boxGrad" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#c23b2f"/>
-              <stop offset="100%" stop-color="#8a1f18"/>
-            </linearGradient>
-          </defs>
-          <path d="M70 90 L330 90" stroke="#5a1712" stroke-width="2" opacity="0.35"/>
-          <text x="200" y="160" text-anchor="middle" fill="#fff" font-size="20" font-weight="800" font-family="Manrope, sans-serif">ŠALTUKAS</text>
-          <text x="200" y="290" text-anchor="middle" fill="#9a8f80" font-size="13" font-family="Manrope, sans-serif">Iliustracija — ne faktinė nuotrauka</text>
-        </svg>
+        <img src="assets/img/product-flat-suction-cups.jpg" alt="Šaltukas uždangalas ir 2 siurbtukai">
       </div>
 
       <div class="product-info">
@@ -386,18 +385,7 @@
   <section class="section" id="duk">
     <div class="container duk-split">
       <div class="duk-visual">
-        <svg viewBox="0 0 360 420" class="duk-svg">
-          <rect width="360" height="420" rx="18" fill="#f4efe8"/>
-          <rect x="60" y="90" width="240" height="160" rx="14" fill="url(#duk1)"/>
-          <defs>
-            <linearGradient id="duk1" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#c23b2f"/>
-              <stop offset="100%" stop-color="#8a1f18"/>
-            </linearGradient>
-          </defs>
-          <text x="180" y="176" text-anchor="middle" fill="#fff" font-size="16" font-weight="800" font-family="Manrope, sans-serif">ŠALTUKAS</text>
-          <text x="180" y="390" text-anchor="middle" fill="#9a8f80" font-size="12" font-family="Manrope, sans-serif">Iliustracija — ne faktinė nuotrauka</text>
-        </svg>
+        <img src="assets/img/installed-no-scraper.jpg" alt="Šaltukas uždėtas, sniegas aplinkui">
       </div>
       <div class="duk-list">
         <h2>DUK</h2>

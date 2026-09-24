@@ -1,6 +1,13 @@
 # Šaltukas — windshield cover shop
 
-A single-product ecommerce landing page for "Šaltukas," a windshield frost/snow cover (Lithuanian market). Visual structure (header, gallery + buy box, trust icons, dark comparison table, tabbed specs, accordion FAQ, closing CTA band) follows the reference layout supplied; all copy is the Lithuanian text from the supplied landing page copy brief.
+A single-product ecommerce landing page for "Šaltukas," a windshield frost/snow cover (Lithuanian market). Visual structure (header, gallery + buy box, trust icons, dark comparison table, tabbed specs, accordion FAQ, closing CTA band) follows the reference layout supplied; copy is the Lithuanian text from the supplied landing page copy brief; typography and colors follow the supplied "Stiliaus Gidas" (style guide).
+
+## Design system (Stiliaus Gidas)
+
+- **Font**: Figtree (800 for headings, 400 body, 700 buttons/labels/price), falling back to Nunito Sans, loaded from Google Fonts in `index.html`.
+- **Colors** (all as CSS custom properties in `assets/css/styles.css`): Night Ink `#0E1B2C` (headings), Slate `#4A5563` (body), Fog `#8593A3` (captions), Deep Frost `#16324F` (primary CTA), Glacier `#3E7CB1` (accents/labels/links), Ice `#EEF4F8` (section bg), Snow `#F8FAFC` (page bg), Frost Line `#D8E3EC` (borders), Warm Red `#C8372D` (price/discount only).
+- **Type scale**: H1 56/36px, H2 36/28px, H3 24/20px, body 17/16px, caption 14/13px, uppercase label 12/11px (+0.12em), button 16px, price 20/18px — desktop/mobile, switching at 640px, exactly per the guide's table.
+- Buttons: 14×28px padding, 6px radius, white text on Deep Frost.
 
 ## Structure
 
@@ -41,4 +48,13 @@ The cart computes real totals now that `PRODUCT.price` is set in `assets/js/cart
 
 ## Images
 
-All product/vehicle imagery is illustrative SVG (clearly labeled "Iliustracija — ne faktinė nuotrauka"), not real product photos. Replace the gallery and section graphics with real photos/video once the sample is in hand.
+Real product photos are in `assets/img/` and used across the page:
+
+- `installed-clean.jpg` — cover installed, default gallery image, DUK visual
+- `installed-no-scraper.jpg` — cover installed in snow, gallery thumbnail, video-section poster
+- `product-flat-suction-cups.jpg` — cover + 2 suction cups laid out, "Ką gauni" section, bundle thumbnails, cart item thumbnail
+- `problem-scraping.jpg` — hand scraping a frozen windshield, "Problema" section
+
+**Not used**: a supplied dimension-diagram photo showed "200 × 70 cm," which contradicts the confirmed 200 × 170 cm — left out rather than publishing a page that contradicts itself. Flag if 70 cm was actually correct.
+
+Vehicle-type fit cards (Hečbekas, Sedanas, etc.) remain illustrative SVG silhouettes — no real photos of the cover on those specific vehicle types were supplied yet.
