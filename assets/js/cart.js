@@ -2,16 +2,20 @@
   "use strict";
 
   // ===== Product config =====
+  // Price intentionally left unset — the copy brief marks price as [KAINA],
+  // pending a pricing decision. Fill PRODUCT.price in before launch; until
+  // then the cart shows quantities without inventing a total.
   var PRODUCT = {
-    id: "frostguard-cover",
-    name: "FrostGuard uždangalas žiemai",
-    price: 24.99,
+    id: "saltukas-cover",
+    name: "Šaltukas uždangalas",
+    price: null, // e.g. 24.99
   };
 
-  var CART_KEY = "frostguard_cart";
+  var CART_KEY = "saltukas_cart";
 
   // ===== Helpers =====
   function money(v) {
+    if (v === null || isNaN(v)) return "[KAINA]";
     return "€" + v.toFixed(2).replace(".", ",");
   }
 
@@ -47,6 +51,7 @@
   var qtyMinus = document.getElementById("qtyMinus");
   var qtyPlus = document.getElementById("qtyPlus");
   var addToCartBtn = document.getElementById("addToCart");
+  var bundleRadios = document.querySelectorAll('input[name="bundle"]');
 
   var checkoutOverlay = document.getElementById("checkoutOverlay");
   var closeCheckoutBtn = document.getElementById("closeCheckout");
@@ -84,7 +89,7 @@
           '</div>' +
           '<button type="button" class="cart-item-remove" data-action="remove">Pašalinti</button>' +
         '</div>' +
-        '<div class="cart-item-price">' + money(PRODUCT.price * qty) + '</div>';
+        '<div class="cart-item-price">' + money(PRODUCT.price !== null ? PRODUCT.price * qty : null) + '</div>';
       cartItems.appendChild(row);
 
       row.querySelector('[data-action="inc"]').addEventListener("click", function () {
@@ -104,8 +109,9 @@
       });
     }
 
-    var total = PRODUCT.price * qty;
-    cartTotal.textContent = money(total);
+    cartTotal.textContent = PRODUCT.price !== null
+      ? money(PRODUCT.price * qty)
+      : (qty > 0 ? qty + " vnt. × [KAINA]" : "[KAINA]");
   }
 
   // ===== Quantity selector (product page) =====
@@ -122,6 +128,15 @@
     if (isNaN(v) || v < 1) v = 1;
     if (v > 10) v = 10;
     qtyInput.value = v;
+  });
+
+  // ===== Bundle selector syncs quantity =====
+  bundleRadios.forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      var option = radio.closest(".bundle-option");
+      var qty = parseInt(option.getAttribute("data-qty"), 10) || 1;
+      qtyInput.value = qty;
+    });
   });
 
   addToCartBtn.addEventListener("click", function () {
@@ -147,22 +162,87 @@
 
   // ===== Mobile nav toggle =====
   menuToggle.addEventListener("click", function () {
-    mainNav.style.display = mainNav.style.display === "flex" ? "none" : "flex";
+    var open = mainNav.style.display === "flex";
+    mainNav.style.display = open ? "none" : "flex";
     mainNav.style.flexDirection = "column";
     mainNav.style.position = "absolute";
-    mainNav.style.top = "72px";
+    mainNav.style.top = "76px";
     mainNav.style.left = "0";
     mainNav.style.right = "0";
-    mainNav.style.background = "#f6f8fc";
+    mainNav.style.background = "#ffffff";
     mainNav.style.padding = "16px 24px";
-    mainNav.style.borderBottom = "1px solid #dde4f0";
+    mainNav.style.borderBottom = "1px solid #e7e1d6";
+    mainNav.style.zIndex = "50";
+  });
+
+  // ===== Gallery thumbnails =====
+  var thumbs = document.querySelectorAll(".gallery-thumbs .thumb");
+  var galleryMain = document.getElementById("galleryMain");
+  var GALLERY_VIEWS = {
+    cover: { label: "Uždėtas Šaltukas", from: "#c23b2f", to: "#8a1f18" },
+    evening: { label: "Uždėjimas vakare", from: "#2c3e5c", to: "#141a2b" },
+    morning: { label: "Rytas su Šaltuku", from: "#3a5a8a", to: "#182a44" },
+    fold: { label: "Sulankstytas ir sudėtas", from: "#6b6258", to: "#332e29" },
+  };
+
+  function renderGallery(viewKey) {
+    var v = GALLERY_VIEWS[viewKey] || GALLERY_VIEWS.cover;
+    galleryMain.innerHTML =
+      '<svg viewBox="0 0 480 420" class="hero-svg">' +
+        '<defs><linearGradient id="hgrad" x1="0" y1="0" x2="1" y2="1">' +
+          '<stop offset="0%" stop-color="' + v.from + '"/>' +
+          '<stop offset="100%" stop-color="' + v.to + '"/>' +
+        '</linearGradient></defs>' +
+        '<rect width="480" height="420" fill="#f7f4ef"/>' +
+        '<rect x="90" y="90" width="300" height="220" rx="16" fill="url(#hgrad)"/>' +
+        '<text x="240" y="210" text-anchor="middle" fill="#fff" font-size="18" font-weight="800" font-family="Manrope, sans-serif">' + v.label + '</text>' +
+        '<text x="240" y="380" text-anchor="middle" fill="#9a8f80" font-size="13" font-family="Manrope, sans-serif">Iliustracija — ne faktinė nuotrauka</text>' +
+      '</svg>';
+  }
+
+  thumbs.forEach(function (t) {
+    t.addEventListener("click", function () {
+      thumbs.forEach(function (o) { o.classList.remove("active"); });
+      t.classList.add("active");
+      renderGallery(t.getAttribute("data-view"));
+    });
+  });
+  renderGallery("cover");
+
+  // ===== Tabs (Ką gauni section) =====
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabPanels = document.querySelectorAll(".tab-panel");
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabBtns.forEach(function (b) { b.classList.remove("active"); });
+      tabPanels.forEach(function (p) { p.classList.remove("active"); });
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.getAttribute("data-tab")).classList.add("active");
+    });
+  });
+
+  // ===== Fit illustration shapes (vehicle silhouettes) =====
+  var SHAPES = {
+    hatchback: "M8 62 Q10 40 30 38 L70 38 Q90 40 95 62 L95 74 Q95 80 88 80 L80 80 Q78 70 68 70 Q58 70 56 80 L38 80 Q36 70 26 70 Q16 70 14 80 L8 80 Q2 80 2 74 Z",
+    sedan: "M4 62 Q6 38 26 36 L46 20 L78 20 L92 36 Q112 38 114 62 L114 76 Q114 82 106 82 L98 82 Q96 72 86 72 Q76 72 74 82 L44 82 Q42 72 32 72 Q22 72 20 82 L10 82 Q4 82 4 76 Z",
+    crossover: "M4 58 Q6 32 28 30 L44 14 L84 14 L100 30 Q122 32 124 58 L124 78 Q124 84 116 84 L106 84 Q104 74 94 74 Q84 74 82 84 L46 84 Q44 74 34 74 Q24 74 22 84 L12 84 Q4 84 4 78 Z",
+    suv: "M2 54 Q4 26 28 24 L42 8 L92 8 L110 24 Q136 26 138 54 L138 80 Q138 86 130 86 L118 86 Q116 76 106 76 Q96 76 94 86 L46 86 Q44 76 34 76 Q24 76 22 86 L10 86 Q2 86 2 80 Z",
+    van: "M2 46 L2 78 Q2 84 10 84 L18 84 Q20 74 30 74 Q40 74 42 84 L98 84 Q100 74 110 74 Q120 74 122 84 L130 84 Q138 84 138 78 L138 30 Q138 22 128 22 L46 22 Q30 22 20 32 Z",
+  };
+  document.querySelectorAll(".fit-illustration").forEach(function (el) {
+    var shape = SHAPES[el.getAttribute("data-shape")];
+    if (!shape) return;
+    el.innerHTML =
+      '<svg viewBox="0 0 140 90" style="position:absolute;inset:0;width:100%;height:100%;">' +
+        '<path d="' + shape + '" fill="#c23b2f" opacity="0.85"/>' +
+      '</svg>';
   });
 
   // ===== Checkout modal =====
   function openCheckout() {
     if (!cart.qty) return;
     orderSummary.textContent =
-      PRODUCT.name + " × " + cart.qty + " — Viso: " + money(PRODUCT.price * cart.qty);
+      PRODUCT.name + " × " + cart.qty + " — Viso: " + (PRODUCT.price !== null ? money(PRODUCT.price * cart.qty) : "[KAINA] (kaina bus patvirtinta)");
     checkoutFormWrap.classList.remove("hidden");
     checkoutSuccess.classList.add("hidden");
     checkoutOverlay.classList.add("active");

@@ -1,6 +1,6 @@
-# FrostGuard — windshield cover shop
+# Šaltukas — windshield cover shop
 
-A single-product ecommerce landing page for a windshield frost/snow cover (Lithuanian market), built from the supplied customer/offer research.
+A single-product ecommerce landing page for "Šaltukas," a windshield frost/snow cover (Lithuanian market). Visual structure (header, gallery + buy box, trust icons, dark comparison table, tabbed specs, accordion FAQ, closing CTA band) follows the reference layout supplied; all copy is the Lithuanian text from the supplied landing page copy brief.
 
 ## Structure
 
@@ -16,17 +16,23 @@ No build step — open `index.html` directly, or serve with any static server:
 python3 -m http.server 8000
 ```
 
-## What's real vs. placeholder
+## Placeholders — `[X]` fields
 
-The copy sticks to the claim boundaries from the research (no "universal fit," no "waterproof," no fabricated testimonials — the research dossier explicitly flagged that authentic Lithuanian first-person reviews were too sparse to use, so none are shown).
+The copy brief marks every unconfirmed fact (price, dimensions, attachment method, test results, delivery time, etc.) with bracketed placeholders like `[X]` or `[KAINA]`. Those are kept **visibly flagged** on the live page (yellow highlight, same convention as the source document) rather than filled with invented numbers — the brief is explicit that these come from actual product testing and supplier confirmation, not from copywriting.
 
-Still placeholders you need to fill in before launch:
-- **Price** (`€24,99` — hardcoded in `index.html` and `assets/js/cart.js`, pricing was explicitly out of scope in the research)
-- **Product photos** — currently illustrative SVG graphics, not real product photos
-- **Exact dimensions/attachment hardware** — the research notes the final SKU/BOM wasn't locked yet
-- **Shipping & returns terms, contact email** — generic placeholders in the footer
-- **Checkout** — the "Patvirtinti užsakymą" form is a working demo (saves nothing, charges nothing). Wire up a real payment provider (Stripe, Paysera, etc.) and an order backend before taking real orders.
+Search the page for `mark class="todo"` (or just look for the yellow-highlighted text) to find every field that needs a real value before launch:
 
-## Naming
+- **Price** (`[KAINA]`) — appears in the hero, bundle options, offer section, cart and footer
+- **Dimensions / fit thresholds** — currently the supplier's claimed 200×70 cm, not yet verified against a size matrix
+- **Attachment method, install/removal time, wind test results** — pending the physical validation tests described in the research
+- **Delivery time, storage bag inclusion, return terms**
+- **Video proof asset** — the "Įrodymas" section has a placeholder video block; swap in the real overnight-comparison footage once filmed
+- **Reviews** — intentionally left empty ("Renkame pirmuosius atsiliepimus") rather than showing fabricated testimonials or star ratings; the source research explicitly found too few authentic first-person reviews to use
 
-Used "FrostGuard" as a working name from the offer brief's candidate list. Swap it (search/replace in `index.html`) once trademark/domain checks are done — the research flagged all name candidates as unverified.
+## Cart / checkout
+
+Since price isn't set yet, the cart tracks quantity but displays `[KAINA]` instead of a computed total. Once you set `PRODUCT.price` in `assets/js/cart.js`, totals compute automatically. The checkout form is a working demo (collects name/email/address, shows a confirmation) — **no payment processing is wired up**. Integrate a real provider (Stripe, Paysera, etc.) before taking orders.
+
+## Images
+
+All product/vehicle imagery is illustrative SVG (clearly labeled "Iliustracija — ne faktinė nuotrauka"), not real product photos. Replace the gallery and section graphics with real photos/video once the sample is in hand.
