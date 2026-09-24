@@ -12,6 +12,6 @@
 </head>
 <body>
 {{ content_for_layout }}
-{{ 'saltukas.js' | asset_url | script_tag }}
+<script src="{{ 'saltukas.js' | asset_url }}" defer></script>
 </body>
 </html>
