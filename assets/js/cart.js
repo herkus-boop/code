@@ -2,13 +2,10 @@
   "use strict";
 
   // ===== Product config =====
-  // Price intentionally left unset — the copy brief marks price as [KAINA],
-  // pending a pricing decision. Fill PRODUCT.price in before launch; until
-  // then the cart shows quantities without inventing a total.
   var PRODUCT = {
     id: "saltukas-cover",
     name: "Šaltukas uždangalas",
-    price: null, // e.g. 24.99
+    price: 29.99, // was €39,99
   };
 
   var CART_KEY = "saltukas_cart";

@@ -201,8 +201,18 @@ mark.todo.todo-light { background: #fff3cf; }
   font-weight: 800;
 }
 
-.price-row { margin: 18px 0 16px; }
+.price-row { margin: 18px 0 16px; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .price { font-size: 2.1rem; font-weight: 800; color: var(--ink); }
+.price-old { font-size: 1.15rem; font-weight: 600; color: var(--muted); text-decoration: line-through; }
+.price-save {
+  background: #e9f6ee;
+  color: var(--ok);
+  font-size: .8rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+.cta-price-old { font-size: 1.2rem; font-weight: 600; color: #e0c3bd; text-decoration: line-through; margin-left: 8px; }
 
 .buy-box { display: flex; gap: 14px; margin-top: 10px; align-items: stretch; }
 .qty-selector {
