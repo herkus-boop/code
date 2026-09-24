@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrostGuard — Priekinio stiklo uždangalas žiemai</title>
+<meta name="description" content="FrostGuard priekinio stiklo uždangalas: uždenkite vakare, ryte turėkite mažiau darbo su šerkšnu ir sniegu.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo">Frost<span>Guard</span></a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#problema">Problema</a>
+      <a href="#kaip-veikia">Kaip veikia</a>
+      <a href="#produktas">Produktas</a>
+      <a href="#duk">DUK</a>
+    </nav>
+    <div class="header-actions">
+      <button class="cart-btn" id="openCart" aria-label="Krepšelis">
+        🛒 <span id="cartCount" class="cart-count">0</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Meniu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Žiemos priežiūra automobiliui</p>
+        <h1>Kodėl ryte grandyti ledą, jei stiklą galite uždengti dar vakare?</h1>
+        <p class="hero-sub">FrostGuard — priekinio stiklo uždangalas, skirtas lauke nakvojantiems automobiliams. Uždedate vakare prieš paliekant automobilį, nuimate ryte prieš važiuojant.</p>
+        <div class="hero-cta-row">
+          <a href="#produktas" class="btn btn-primary">Žiūrėti produktą</a>
+          <a href="#kaip-veikia" class="btn btn-ghost">Kaip tai veikia</a>
+        </div>
+        <ul class="hero-trustlist">
+          <li>Skirtas priekiniam stiklui</li>
+          <li>Sulankstomas, lengva laikyti</li>
+          <li>Paprastas 3 žingsnių naudojimas</li>
+        </ul>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 480 420" class="hero-svg">
+          <defs>
+            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1b2a4a"/>
+              <stop offset="100%" stop-color="#0e1730"/>
+            </linearGradient>
+            <linearGradient id="coverGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4fa3ff"/>
+              <stop offset="100%" stop-color="#1f6fd6"/>
+            </linearGradient>
+          </defs>
+          <rect width="480" height="420" rx="24" fill="url(#skyGrad)"/>
+          <circle cx="400" cy="70" r="34" fill="#ffffff" opacity="0.08"/>
+          <g opacity="0.35">
+            <circle cx="60" cy="60" r="3" fill="#fff"/>
+            <circle cx="120" cy="100" r="2" fill="#fff"/>
+            <circle cx="200" cy="50" r="2.5" fill="#fff"/>
+            <circle cx="340" cy="40" r="2" fill="#fff"/>
+          </g>
+          <!-- car body -->
+          <path d="M70 300 Q75 250 140 240 L300 240 Q350 245 370 300 L370 330 Q370 345 355 345 L330 345 Q325 325 305 325 Q285 325 280 345 L170 345 Q165 325 145 325 Q125 325 120 345 L95 345 Q75 345 75 325 Z" fill="#dbe6f5"/>
+          <!-- windshield with cover -->
+          <path d="M140 240 L165 190 L275 190 L300 240 Z" fill="#9fb6d6"/>
+          <path d="M132 244 L160 184 L280 184 L308 244 Z" fill="url(#coverGrad)" stroke="#0e1730" stroke-width="3" stroke-linejoin="round"/>
+          <line x1="150" y1="215" x2="288" y2="215" stroke="#0e1730" stroke-width="2" opacity="0.3"/>
+          <!-- straps -->
+          <path d="M132 244 L118 300" stroke="#0e1730" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M308 244 L322 300" stroke="#0e1730" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- wheels -->
+          <circle cx="145" cy="345" r="22" fill="#0e1730"/>
+          <circle cx="145" cy="345" r="9" fill="#5b7aa8"/>
+          <circle cx="305" cy="345" r="22" fill="#0e1730"/>
+          <circle cx="305" cy="345" r="9" fill="#5b7aa8"/>
+          <!-- snow on roof (uncovered part) -->
+          <g fill="#ffffff" opacity="0.9">
+            <circle cx="185" cy="250" r="3"/>
+            <circle cx="210" cy="245" r="2.5"/>
+            <circle cx="240" cy="252" r="3"/>
+            <circle cx="260" cy="247" r="2"/>
+          </g>
+        </svg>
+        <p class="visual-caption">Iliustracija. Ne faktinė gaminio nuotrauka.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="section" id="problema">
+    <div class="container narrow">
+      <h2>Pažįstama žiemos rytų istorija</h2>
+      <p class="lede">Automobilis nakvoja lauke. Per naktį ant priekinio stiklo susikaupia šerkšnas arba sniegas. Ryte, prieš skubant į darbą ar vežant vaikus, tenka grandyti, valyti ir laukti, kol atšils salonas.</p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>Papildoma užduotis prieš išvažiavimą</h3>
+          <p>Suplanuotas rytas papildomas dar vienu darbu — stiklo valymu, kuris kartojasi kiekvieną šaltą rytą.</p>
+        </div>
+        <div class="problem-card">
+          <h3>Laikas šaltyje</h3>
+          <p>Grandymas ir valymas dažnai reiškia kelias minutes lauke, šaltyje, vėjyje ar krituliuose.</p>
+        </div>
+        <div class="problem-card">
+          <h3>Neaišku, ar priedas padės</h3>
+          <p>Ar šerkšnas vis tiek susiformuos po uždangalu? Ar jis tinkamai priglus prie jūsų automobilio? Sąžiningi atsakymai — žemiau, skiltyje DUK.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section section-alt" id="kaip-veikia">
+    <div class="container narrow">
+      <h2>Kaip veikia FrostGuard</h2>
+      <p class="lede">Idėja paprasta: fizinė kliūtis uždedama prieš tai, kai ant stiklo gali susiformuoti šerkšnas ar nukristi sniegas — o ne pašalinama jau susikaupus.</p>
+      <ol class="steps">
+        <li>
+          <span class="step-num">1</span>
+          <div>
+            <h3>Uždenkite vakare</h3>
+            <p>Prieš palikdami automobilį lauke, uždėkite ir pritvirtinkite uždangalą ant priekinio stiklo pagal instrukciją.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div>
+            <h3>Palikite per naktį</h3>
+            <p>Uždangalas lieka ant stiklo, kol automobilis stovi — jei sąlygos ir tvirtinimas tai leidžia.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div>
+            <h3>Nuimkite ryte</h3>
+            <p>Nuimkite, sulankstykite ir prieš važiuodami vis tiek patikrinkite bei nuvalykite likusį sniegą ar ledą nuo visų stiklų ir žibintų.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="fine-print">Svarbu: uždangalas dengia tik priekinį stiklą. Prieš važiuodami visada patikrinkite ir, jei reikia, nuvalykite visus langus, veidrodėlius ir žibintus — tai vairuotojo atsakomybė.</p>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT ============ -->
+  <section class="section" id="produktas">
+    <div class="container">
+      <div class="product-grid">
+        <div class="product-gallery">
+          <div class="gallery-main">
+            <svg viewBox="0 0 400 320" class="product-svg">
+              <rect width="400" height="320" rx="16" fill="#101a33"/>
+              <rect x="60" y="70" width="280" height="180" rx="14" fill="url(#pg2)"/>
+              <defs>
+                <linearGradient id="pg2" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4fa3ff"/>
+                  <stop offset="100%" stop-color="#1f6fd6"/>
+                </linearGradient>
+              </defs>
+              <path d="M60 90 L340 90" stroke="#0e1730" stroke-width="2" opacity="0.25"/>
+              <circle cx="90" cy="230" r="8" fill="#0e1730"/>
+              <circle cx="310" cy="230" r="8" fill="#0e1730"/>
+              <circle cx="200" cy="230" r="8" fill="#0e1730"/>
+              <text x="200" y="290" text-anchor="middle" fill="#8fa5cf" font-size="14" font-family="Manrope, sans-serif">Iliustracija — ne faktinė nuotrauka</text>
+            </svg>
+          </div>
+          <div class="gallery-thumbs">
+            <div class="thumb active"></div>
+            <div class="thumb"></div>
+            <div class="thumb"></div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <p class="eyebrow">FrostGuard priekinio stiklo uždangalas</p>
+          <h2>FrostGuard uždangalas žiemai</h2>
+          <div class="price-row">
+            <span class="price" id="unitPrice">€24,99</span>
+          </div>
+          <p class="product-desc">Nuimamas priekinio stiklo uždangalas, skirtas naudoti lauke paliekamiems automobiliams. Dengia priekinį stiklą ir padeda apsisaugoti nuo tiesiogiai krentančio sniego; šerkšno formavimosi sumažėjimas priklauso nuo konkrečių oro sąlygų.</p>
+
+          <table class="specs-table">
+            <tbody>
+              <tr><th>Matmenys</th><td>~200 × 70 cm (tiksliai matuoti prieš pirkimą)</td></tr>
+              <tr><th>Tinka</th><td>Priekiniam automobilio stiklui</td></tr>
+              <tr><th>Tvirtinimas</th><td>Pagal komplektaciją — žr. produkto aprašymą prieš užsakant</td></tr>
+              <tr><th>Laikymas</th><td>Sulankstomas; laikykite sausoje vietoje po naudojimo</td></tr>
+            </tbody>
+          </table>
+
+          <p class="fine-print">Tikslūs matmenys, tvirtinimo būdas ir komplektacija priklauso nuo galutinės tiekėjo partijos. Prieš skelbiant konkrečias veikimo charakteristikas (pvz., atsparumą vėjui ar visišką apsaugą nuo šerkšno), jos turi būti patikrintos su galutiniu gaminiu.</p>
+
+          <div class="buy-box">
+            <div class="qty-selector">
+              <button type="button" id="qtyMinus" aria-label="Mažinti kiekį">−</button>
+              <input type="number" id="qtyInput" value="1" min="1" max="10" aria-label="Kiekis">
+              <button type="button" id="qtyPlus" aria-label="Didinti kiekį">+</button>
+            </div>
+            <button class="btn btn-primary btn-large" id="addToCart">Įdėti į krepšelį</button>
+          </div>
+          <p class="micro-trust">🚚 Pristatymas Lietuvoje · 🔄 Grąžinimas per 14 d. · 🔒 Saugus atsiskaitymas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HONESTY / WHAT TO EXPECT ============ -->
+  <section class="section section-alt">
+    <div class="container narrow">
+      <h2>Ką verta žinoti prieš perkant</h2>
+      <p class="lede">Norime, kad žinotumėte, ką uždangalas realiai daro — be perdėtų pažadų.</p>
+      <div class="honesty-grid">
+        <div class="honesty-card honesty-yes">
+          <h3>Ką jis daro</h3>
+          <ul>
+            <li>Sudaro fizinę kliūtį tarp priekinio stiklo ir tiesiogiai krentančio sniego.</li>
+            <li>Tinkamai pritvirtintas gali padėti sumažinti šerkšno susidarymą ant dengiamos stiklo dalies tam tikromis sąlygomis.</li>
+            <li>Palengvina vakaro/ryto rutiną, jei uždėjimas ir nuėmimas užtrunka trumpiau nei grandymas.</li>
+          </ul>
+        </div>
+        <div class="honesty-card honesty-no">
+          <h3>Ko jis negarantuoja</h3>
+          <ul>
+            <li>Neužtikrina, kad šerkšnas niekada nesusiformuos po uždangalu.</li>
+            <li>Nepakeičia būtino visų langų, veidrodėlių ir žibintų išvalymo prieš važiuojant.</li>
+            <li>Tvirtinimo patikimumas stipriame vėjyje ar ant šlapio stiklo priklauso nuo konkrečių sąlygų — nesame tikri, kol nepatikrinta galutinė versija.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="duk">
+    <div class="container narrow">
+      <h2>Dažniausiai užduodami klausimai</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Ar šerkšnas vis tiek susiformuos po uždangalu?</summary>
+          <p>Tiesiogiai krentantis sniegas ir kritulai ant dengiamos dalies sumažinami. Šerkšno susidarymas priklauso nuo drėgmės, temperatūros ir vėjo sąlygų — visiško pašalinimo negarantuojame.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ar tiks mano automobiliui?</summary>
+          <p>Uždangalas skirtas priekiniam stiklui, orientacinis dydis ~200 × 70 cm. Prieš perkant rekomenduojame pasimatuoti savo priekinį stiklą ir palyginti su nurodytais matmenimis — nevadiname jo „universaliu".</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ar tvirtinimas atlaikys vėją?</summary>
+          <p>Tvirtinimo patikimumas priklauso nuo konkrečių sąlygų (vėjo stiprumo, drėgmės, temperatūros). Rekomenduojame patikrinti tvirtinimą po pirmų naudojimo naktų ir esant stipresniam vėjui.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ar vis tiek reikės grandiklio ar apšildymo?</summary>
+          <p>Tikėtina, kad taip — bent jau kitiems langams, veidrodėliams ir žibintams, kurių uždangalas nedengia. Visada patikrinkite matomumą prieš važiuodami.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Kur laikyti šlapią uždangalą ryte?</summary>
+          <p>Sulankstykite ir laikykite sausoje, gerai vėdinamoje vietoje, kol išdžius, prieš kitą naudojimą.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Ar tai tas pats uždangalas, kurį galima rasti kitur?</summary>
+          <p>Uždangalų kategorijoje yra daug panašių sprendimų su skirtingais tvirtinimo būdais ir dydžiais. Skelbiame tikslią komplektaciją ir matmenis, kad galėtumėte palyginti sąmoningai.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band">
+    <div class="container cta-inner">
+      <h2>Pasiruoškite žiemai jau šį vakarą</h2>
+      <p>Uždenkite vakare — sutaupykite laiko rytą, kai skubate.</p>
+      <a href="#produktas" class="btn btn-primary btn-large">Užsisakyti FrostGuard</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="#top" class="logo">Frost<span>Guard</span></a>
+      <p class="footer-desc">Priekinio stiklo uždangalas žiemai lauke paliekamiems automobiliams. Sąžininga informacija, be perdėtų pažadų.</p>
+    </div>
+    <div>
+      <h4>Informacija</h4>
+      <ul>
+        <li><a href="#problema">Problema</a></li>
+        <li><a href="#kaip-veikia">Kaip veikia</a></li>
+        <li><a href="#produktas">Produktas</a></li>
+        <li><a href="#duk">DUK</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Kontaktai</h4>
+      <ul>
+        <li>El. paštas: info@frostguard.lt <em>(pavyzdinis — pakeiskite savo)</em></li>
+        <li>Pristatymas: visoje Lietuvoje <em>(sąlygas patikslinkite)</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© <span id="year"></span> FrostGuard. Visos teisės saugomos. Kainos ir sąlygos — pavyzdinės, prieš paleidimą pakeiskite realiomis.</p>
+  </div>
+</footer>
+
+<!-- ============ CART DRAWER ============ -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Pirkinių krepšelis">
+  <div class="cart-header">
+    <h2>Krepšelis</h2>
+    <button id="closeCart" aria-label="Uždaryti">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty" id="cartEmpty">Krepšelis tuščias.</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row">
+      <span>Viso:</span>
+      <span id="cartTotal">€0,00</span>
+    </div>
+    <button class="btn btn-primary btn-large" id="checkoutBtn" disabled>Pereiti prie apmokėjimo</button>
+  </div>
+</aside>
+
+<!-- ============ CHECKOUT MODAL ============ -->
+<div class="modal-overlay" id="checkoutOverlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-label="Užsakymo forma">
+    <button class="modal-close" id="closeCheckout" aria-label="Uždaryti">✕</button>
+    <div id="checkoutFormWrap">
+      <h2>Užsakymo duomenys</h2>
+      <p class="modal-note">Demonstracinė forma. Realiam mokėjimui reikia prijungti mokėjimų sistemą (pvz., Stripe, Paysera).</p>
+      <form id="checkoutForm">
+        <label>Vardas ir pavardė
+          <input type="text" name="name" required>
+        </label>
+        <label>El. paštas
+          <input type="email" name="email" required>
+        </label>
+        <label>Adresas
+          <input type="text" name="address" required>
+        </label>
+        <label>Miestas
+          <input type="text" name="city" required>
+        </label>
+        <div class="order-summary" id="orderSummary"></div>
+        <button type="submit" class="btn btn-primary btn-large">Patvirtinti užsakymą</button>
+      </form>
+    </div>
+    <div id="checkoutSuccess" class="hidden">
+      <h2>Ačiū! Užsakymas gautas.</h2>
+      <p>Tai demonstracinis užsakymas — jokia suma nebuvo nuskaičiuota. Prijungus tikrą mokėjimų sistemą, klientas šioje vietoje matytų patvirtinimą su užsakymo numeriu.</p>
+      <button class="btn btn-primary" id="closeSuccess">Uždaryti</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/cart.js"></script>
+</body>
+</html>
