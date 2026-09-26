@@ -36,10 +36,23 @@ Shopify normally wraps every page in your theme's own header/footer (`layout/the
 
 4. **View the live page**: Product page → "Preview" or visit `/products/saltukas` on your store domain.
 
+## Demand-test mode (currently ON)
+
+`assets/saltukas.js` has a flag near the top: `var DEMAND_TEST_MODE = true;`
+
+While it's `true`, clicking "Noriu Šaltuko" **never** hits Shopify's real cart:
+
+1. It fires a Meta Pixel `AddToCart` event (for traffic/interest tracking in Ads Manager). This requires a Meta Pixel already connected to the store — Shopify admin → **Settings → Customer events** (or the "Facebook & Instagram" sales channel) — otherwise nothing fires, silently.
+2. The buy box is replaced with a "Šiuo metu išparduota" (out of stock) message and an email form.
+3. That email form is Shopify's own customer form — submitted emails become real **Customers** in your store, tagged `saltukas-waitlist`. Find them at Shopify admin → **Customers** → search/filter by tag `saltukas-waitlist`. Export as CSV or email them via the Shopify Email app whenever you're ready.
+
+Keep the product's actual inventory at **0 stock** (Product → Inventory → Quantity `0`, "Continue selling when out of stock" **off**) so nothing can be purchased through any other route (direct API calls, cached pages, etc.) while this is on.
+
+**To go live for real** once stock exists: set `DEMAND_TEST_MODE = false` in `saltukas.js`, and set real inventory > 0. The real Shopify AJAX add-to-cart code is already there, untouched, ready to go.
+
 ## What's real vs. what to double check
 
 - **Price/compare-at price** pull live from the product (`{{ product.price }}`), so changing it in Shopify admin updates the page automatically — no code edit needed.
-- **Add to cart** posts to Shopify's real `/cart/add.js` endpoint and updates the real cart count in the header. Checkout is Shopify's own (real payments) once you have a payment provider set up in Settings → Payments.
 - **All copy, specs, test results** are hardcoded in `saltukas-product.liquid` exactly as confirmed on the GitHub Pages version (price aside, since that now comes from the product). If any of those numbers change, edit the section file directly (search-and-replace is easiest, matching the GitHub Pages source at `index.html`).
 - **Single-variant assumption**: the add-to-cart form uses `product.selected_or_first_available_variant`. If you add real variants (e.g. color) later, you'll want a variant picker — ask and I'll add one.
 - This template is scoped to **this one product**. If you add more products, they'll use your normal theme template unless you build a similar custom one for them.

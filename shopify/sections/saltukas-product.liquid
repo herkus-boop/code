@@ -63,23 +63,55 @@
           </div>
         </div>
 
-        <form id="saltukasForm" action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <div class="buy-box">
-            <div class="qty-selector">
-              <button type="button" id="qtyMinus" aria-label="Mažinti kiekį">−</button>
-              <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="10" aria-label="Kiekis">
-              <button type="button" id="qtyPlus" aria-label="Didinti kiekį">+</button>
+        <div id="buyBoxWrap">
+          <form
+            id="saltukasForm"
+            action="{{ routes.cart_add_url }}"
+            method="post"
+            enctype="multipart/form-data"
+            data-product-name="{{ product.title | escape }}"
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-price="{{ product.price | divided_by: 100.0 }}"
+            data-currency="{{ cart.currency.iso_code | default: shop.currency }}"
+          >
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <div class="buy-box">
+              <div class="qty-selector">
+                <button type="button" id="qtyMinus" aria-label="Mažinti kiekį">−</button>
+                <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="10" aria-label="Kiekis">
+                <button type="button" id="qtyPlus" aria-label="Didinti kiekį">+</button>
+              </div>
+              <button type="submit" class="btn btn-primary btn-large" id="addToCartBtn">Noriu Šaltuko</button>
             </div>
-            {% if product.available %}
-              <button type="submit" class="btn btn-primary btn-large">Noriu Šaltuko</button>
+            <p class="cart-added-note" id="cartAddedNote">Pridėta į krepšelį ✓</p>
+            <p class="form-error" id="cartErrorNote"></p>
+          </form>
+        </div>
+
+        <!-- Demand-test mode: shown instead of a real cart add. See DEMAND_TEST_MODE in saltukas.js. -->
+        <div id="soldOutWrap" class="sold-out-wrap hidden">
+          <p class="sold-out-title">Šiuo metu išparduota</p>
+          <p class="sold-out-body">Šaltukas šiuo metu neprieinamas. Palik el. paštą — parašysime, kai jį vėl bus galima užsisakyti.</p>
+          {% form 'customer', id: 'saltukasWaitlistForm', class: 'waitlist-form' %}
+            <input type="hidden" name="contact[tags]" value="saltukas-waitlist">
+            {% if form.posted_successfully? %}
+              <p class="cart-added-note visible">Ačiū! Parašysime, kai Šaltukas vėl bus prieinamas.</p>
             {% else %}
-              <button type="submit" class="btn btn-primary btn-large" disabled>Išparduota</button>
+              <label for="waitlistEmail" class="waitlist-label">El. paštas</label>
+              <div class="waitlist-row">
+                <input type="email" name="contact[email]" id="waitlistEmail" required placeholder="tavo@pastas.lt">
+                <button type="submit" class="btn btn-primary">Pranešti man</button>
+              </div>
+              <label class="waitlist-consent">
+                <input type="checkbox" name="contact[accepts_marketing]" value="true" required>
+                Sutinku gauti el. laišką, kai produktas bus prieinamas.
+              </label>
+              {% if form.errors %}
+                <p class="form-error visible">{{ form.errors.messages.email }}</p>
+              {% endif %}
             {% endif %}
-          </div>
-          <p class="cart-added-note" id="cartAddedNote">Pridėta į krepšelį ✓</p>
-          <p class="form-error" id="cartErrorNote"></p>
-        </form>
+          {% endform %}
+        </div>
 
         <p class="trust-line">🛡️ 14 dienų grąžinimas</p>
         <p class="proof-line">Testuota Lietuvos aikštelėse per <strong>67</strong> šaltas naktis</p>

@@ -319,6 +319,44 @@ h1 .accent-line { color: var(--red); }
 }
 .form-error.visible { display: block; }
 
+/* ===== Demand-test mode: sold-out + waitlist form ===== */
+.sold-out-wrap {
+  border: 1px solid var(--frost-line);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  background: var(--ice);
+}
+.sold-out-wrap.hidden { display: none; }
+.sold-out-title { font-weight: 800; color: var(--night-ink); font-size: 17px; margin: 0 0 6px; }
+.sold-out-body { font-size: 14px; margin: 0 0 16px; }
+.waitlist-label { display: block; font-size: 13px; font-weight: 700; color: var(--night-ink); margin-bottom: 6px; }
+.waitlist-row { display: flex; gap: 10px; }
+.waitlist-row input[type="email"] {
+  flex: 1;
+  font-family: var(--font);
+  padding: 12px 14px;
+  border: 1px solid var(--frost-line);
+  border-radius: 8px;
+  font-size: 15px;
+}
+.waitlist-row .btn { width: auto; padding: 12px 22px; }
+.waitlist-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--fog);
+  margin-top: 10px;
+  cursor: pointer;
+}
+.waitlist-consent input { margin-top: 2px; }
+#buyBoxWrap.hidden { display: none; }
+
+@media (max-width: 480px) {
+  .waitlist-row { flex-direction: column; }
+  .waitlist-row .btn { width: 100%; }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 960px) {
   .product-grid { grid-template-columns: 1fr; }
