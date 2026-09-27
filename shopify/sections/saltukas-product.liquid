@@ -71,7 +71,11 @@
               <input type="number" name="quantity" id="qtyInput" value="1" min="1" max="10" aria-label="Kiekis">
               <button type="button" id="qtyPlus" aria-label="Didinti kiekį">+</button>
             </div>
-            <button type="submit" class="btn btn-primary btn-large" id="addToCartBtn">Noriu Šaltuko</button>
+            {% if product.available %}
+              <button type="submit" class="btn btn-primary btn-large">Noriu Šaltuko</button>
+            {% else %}
+              <button type="submit" class="btn btn-primary btn-large" disabled>Išparduota</button>
+            {% endif %}
           </div>
           <p class="cart-added-note" id="cartAddedNote">Pridėta į krepšelį ✓</p>
           <p class="form-error" id="cartErrorNote"></p>
