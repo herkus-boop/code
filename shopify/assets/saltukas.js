@@ -60,96 +60,22 @@
     });
   });
 
-  // ===== DEMAND_TEST_MODE =====
-  // true  -> clicking "Noriu Šaltuko" never hits Shopify's real cart. It fires
-  //          a tracking event (for interest/traffic numbers), then swaps the
-  //          buy box for the "sold out, leave your email" waitlist form.
-  //          Emails land as real Shopify Customers, tagged "saltukas-waitlist"
-  //          (Admin -> Customers -> filter by tag) — ready to bulk-email later.
-  // false -> restores the real Shopify AJAX add-to-cart flow. Flip this back
-  //          to false once actual stock is ready to sell.
-  var DEMAND_TEST_MODE = true;
-
+  // ===== Add to cart button: shows "out of stock" instead of adding =====
   var form = document.getElementById("saltukasForm");
-  var addedNote = document.getElementById("cartAddedNote");
-  var errorNote = document.getElementById("cartErrorNote");
-  var cartCount = document.getElementById("cartCount");
-  var buyBoxWrap = document.getElementById("buyBoxWrap");
-  var soldOutWrap = document.getElementById("soldOutWrap");
+  var soldOutNote = document.getElementById("soldOutNote");
 
   function showNote(el) {
     if (!el) return;
     el.classList.add("visible");
-    window.setTimeout(function () { el.classList.remove("visible"); }, 4000);
-  }
-
-  function refreshCartCount() {
-    if (!cartCount) return;
-    fetch("/cart.js")
-      .then(function (r) { return r.json(); })
-      .then(function (cart) { cartCount.textContent = cart.item_count; })
-      .catch(function () { /* non-fatal */ });
-  }
-
-  // Fires a Meta Pixel "AddToCart" event, if a pixel is installed on the
-  // storefront (Shopify Admin -> Settings -> Customer events -> connect the
-  // Facebook/Meta pixel first, or nothing will fire here). Product details
-  // come from data-* attributes on the form (see saltukas-product.liquid) —
-  // asset files are static and can't contain Liquid tags directly.
-  function trackWaitlistClick() {
-    if (typeof fbq !== "function" || !form) return;
-    fbq("track", "AddToCart", {
-      content_name: form.dataset.productName || "Šaltukas",
-      content_ids: [form.dataset.variantId || ""],
-      content_type: "product",
-      currency: form.dataset.currency || "EUR",
-      value: parseFloat(form.dataset.price) || 0,
-    });
+    window.setTimeout(function () { el.classList.remove("visible"); }, 6000);
   }
 
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      if (DEMAND_TEST_MODE) {
-        trackWaitlistClick();
-        if (buyBoxWrap) buyBoxWrap.classList.add("hidden");
-        if (soldOutWrap) soldOutWrap.classList.remove("hidden");
-        return;
-      }
-
-      // ===== Real Shopify add-to-cart (AJAX Cart API) =====
-      var submitBtn = form.querySelector("[type='submit']");
-      if (submitBtn) submitBtn.disabled = true;
-
-      var formData = new FormData(form);
-
-      fetch("/cart/add.js", {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: formData,
-      })
-        .then(function (r) {
-          if (!r.ok) return r.json().then(function (err) { throw err; });
-          return r.json();
-        })
-        .then(function () {
-          showNote(addedNote);
-          refreshCartCount();
-        })
-        .catch(function (err) {
-          if (errorNote) {
-            errorNote.textContent = (err && err.description) || "Nepavyko pridėti į krepšelį. Bandykite dar kartą.";
-          }
-          showNote(errorNote);
-        })
-        .finally(function () {
-          if (submitBtn) submitBtn.disabled = false;
-        });
+      showNote(soldOutNote);
     });
   }
-
-  if (!DEMAND_TEST_MODE) refreshCartCount();
 
   // ===== Footer year =====
   var yearEl = document.getElementById("year");
